@@ -15,9 +15,11 @@ buttons.forEach((button) => {
         const title = document.querySelector("#modal-item-title");
         title.textContent = dataTitle;
 
+        const dataId = button.getAttribute("data-form-id");
+
         const confirm = document.querySelector(".confirm-cancel");
         confirm.addEventListener("click", (e) => {
-            document.getElementById("delete-form").submit();
+            document.querySelector("#delete-form-" + dataId).submit();
         });
     });
 });

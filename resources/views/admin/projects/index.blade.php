@@ -2,7 +2,9 @@
 @section('content')
     <section class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="py-4">Progetto di Oder Risi (<a href="https://github.com/IIODERII">GitHub profile</a>)</h1>
+            <h1 class="py-4">Progetto di Oder Risi (<a href="https://github.com/IIODERII" class="clickable"
+                    style="color: lightblue">GitHub
+                    profile</a>)</h1>
             <a href="{{ route('admin.projects.create') }}" style="max-width: 200px" class="fw-bold btn btn-primary">Aggiungi un
                 nuovo
                 progetto</a>
@@ -32,11 +34,12 @@
                         <td><a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-success">Mostra</a>
                             <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">Modifica</a>
                             <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST"
-                                class="d-inline" id="delete-form">
+                                class="d-inline" id="delete-form-{{ $project->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-white btn btn-danger cancel-button"
-                                    data-item-title="{{ $project->title }}">Elimina</button>
+                                    data-item-title="{{ $project->title }}"
+                                    data-form-id="{{ $project->id }}">Elimina</button>
                             </form>
                         </td>
                     </tr>

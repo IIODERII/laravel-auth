@@ -11,9 +11,19 @@ $fa-font-path: "../fonts/webfonts" !default;
 
 body {
     font-family: "Lato", sans-serif;
-    background-color: lightgray;
+    background-color: gray;
+    color: white;
 }
 
-header {
-    background-color: grey !important;
+.clickable {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    &:hover {
+        transform: scale(1.2);
+    }
 }
