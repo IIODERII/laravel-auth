@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <h1>My Projects - crate</h1>
-        <form class="my-5" action="{{ route('admin.projects.store') }}" method="POST">
+        <a href="{{ route('admin.projects.index') }}" class="btn btn-dark mt-3"><i class="fa-solid fa-left-long"></i></a>
+
+        <h1 class="display-1 fs-bold py-3">Crea un nuovo progetto</h1>
+        <form class="my-3" action="{{ route('admin.projects.store') }}" method="POST">
             @csrf
             <label for="title">Titolo</label>
             <input value="{{ old('title') }}" required type="text" id="title" name="title"
@@ -28,8 +30,8 @@
             @error('url')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-            <label for="tecnologies">Tecnologie utilizzate (scrivere con un | tra una e l'altra, es.
-                htmll|css|JavaScript)</label>
+            <label for="tecnologies">Tecnologie utilizzate (scrivere con uno spazio tra una e l'altra, es.
+                htmll css JavaScript)</label>
             <input value="{{ old('tecnologies') }}" type="text" id="tecnologies" name="tecnologies"
                 class="form-control @error('description') is-invalid @enderror">
             @error('tecnologies')
