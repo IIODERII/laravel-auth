@@ -25,7 +25,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => ['required', 'min:3', 'max:100', Rule::unique('projects')->ignore($this->project)],
             'description' => 'nullable|min:3',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image',
             'url' => 'required|url',
             'tecnologies' => 'nullable',
         ];
@@ -38,6 +38,7 @@ class UpdateProjectRequest extends FormRequest
             'min' => 'Il campo :attribute deve avere almeno :min caratteri',
             'max' => 'Il campo :attribute deve avere almeno :max caratteri',
             'unique' => 'Il campo :attribute deve essere unico',
+            'image' => 'Il campo :attribute deve essere un immagine',
         ];
     }
 }

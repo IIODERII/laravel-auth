@@ -8,17 +8,19 @@ $technologies = explode(' ', $project->tecnologies);
         <div class="d-flex justify-content-between align-items-center"><a href="{{ route('admin.projects.index') }}"
                 class="btn btn-dark mt-3"><i class="fa-solid fa-left-long"></i></a>
             <div>
-                <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning mt-3">Modifica</a>
-                <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline"
-                    id="delete-form-{{ $project->id }}">
+                <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning mt-3">Modifica</a>
+                <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST" class="d-inline"
+                    id="delete-form-{{ $project->slug }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="text-white btn btn-danger mt-3 cancel-button"
-                        data-item-title="{{ $project->title }}" data-form-id="{{ $project->id }}">Elimina</button>
+                        data-item-title="{{ $project->title }}" data-form-id="{{ $project->slug }}">Elimina</button>
                 </form>
             </div>
         </div>
-        <img src="https://picsum.photos/1500/800" alt="backdrop image" class="w-100 my-3">
+
+        <div><img src="{{ asset('storage/' . $project->image) }}" alt="" class="w-100 my-3"></div>
+
         <h1 class="display-1 fs-bold pb-3">{{ $project->title }}</h1>
 
         <div class="row mb-5 ">

@@ -2,9 +2,8 @@
 @section('content')
     <section class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="py-4">Progetto di Oder Risi (<a href="https://github.com/IIODERII" class="clickable"
-                    style="color: lightblue">GitHub
-                    profile</a>)</h1>
+            <h1 class="py-4">Progetto di Oder Risi (<a href="https://github.com/IIODERII" class="clickable d-inline-block"
+                    style="color: lightblue">Profilo GitHub</a>)</h1>
             <a href="{{ route('admin.projects.create') }}" style="max-width: 200px" class="fw-bold btn btn-primary">Aggiungi un
                 nuovo
                 progetto</a>
@@ -25,21 +24,22 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($projects as $project)
+                @foreach ($projects as $key => $project)
                     <tr>
-                        <td>{{ $project->id }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>{{ $project->title }}</td>
                         <td>{{ substr($project->description, 0, 75) . '...' }}</td>
                         <td>{{ str_replace('|', ', ', $project->tecnologies) }}</td>
-                        <td><a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-success">Mostra</a>
-                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">Modifica</a>
-                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST"
-                                class="d-inline" id="delete-form-{{ $project->id }}">
+                        <td><a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">Mostra</a>
+                            <a href="{{ route('admin.projects.edit', $project->slug) }}"
+                                class="btn btn-warning">Modifica</a>
+                            <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST"
+                                class="d-inline" id="delete-form-{{ $project->slug }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-white btn btn-danger cancel-button"
                                     data-item-title="{{ $project->title }}"
-                                    data-form-id="{{ $project->id }}">Elimina</button>
+                                    data-form-id="{{ $project->slug }}">Elimina</button>
                             </form>
                         </td>
                     </tr>
