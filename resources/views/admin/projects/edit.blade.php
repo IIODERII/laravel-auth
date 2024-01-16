@@ -4,7 +4,7 @@
         <a href="{{ route('admin.projects.index') }}" class="btn btn-dark mt-3"><i class="fa-solid fa-left-long"></i></a>
 
         <h1 class="display-1 fs-bold py-3">Modifica {{ $project->title }}</h1>
-        <form enctype="multipart/form-data" action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+        <form enctype="multipart/form-data" action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
             @csrf
             @method('PUT')
             <label for="title">Titolo</label>
@@ -20,9 +20,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
             <div class="my-3" style="width: 600px;">
-                <img class="w-100" id="uploadPreview"
-                    src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-                    alt="Placeholder">
+                <img class="w-100" id="uploadPreview" src="{{ asset('storage/' . $project->image) }}" alt="Placeholder">
             </div>
             <label for="image">Immagine</label>
             <input value="{{ old('image', $project->image) }}" type="file" id="image" name="image"
